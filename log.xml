@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="windows-1251" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2024-05-20T14:12:00.931051500Z</date>
+  <millis>1716214320931</millis>
+  <nanos>51500</nanos>
+  <sequence>0</sequence>
+  <logger>lecture02.program</logger>
+  <level>INFO</level>
+  <class>lecture02.program</class>
+  <method>main</method>
+  <thread>1</thread>
+  <message>This is INFO</message>
+</record>
+<record>
+  <date>2024-05-20T14:12:00.978051100Z</date>
+  <millis>1716214320978</millis>
+  <nanos>51100</nanos>
+  <sequence>1</sequence>
+  <logger>lecture02.program</logger>
+  <level>WARNING</level>
+  <class>lecture02.program</class>
+  <method>main</method>
+  <thread>1</thread>
+  <message>Test logging 1</message>
+</record>
+<record>
+  <date>2024-05-20T14:12:00.978051100Z</date>
+  <millis>1716214320978</millis>
+  <nanos>51100</nanos>
+  <sequence>2</sequence>
+  <logger>lecture02.program</logger>
+  <level>INFO</level>
+  <class>lecture02.program</class>
+  <method>main</method>
+  <thread>1</thread>
+  <message>Test logging 2</message>
+</record>
+</log>
