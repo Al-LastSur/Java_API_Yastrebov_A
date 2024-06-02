@@ -12,7 +12,7 @@ import java.util.Map;
 // import java.util.TreeMap;
 // import java.util.stream.Collectors;
 
-public class program_hashmap {
+public class PhonebBookLong {
     
     public static class PhoneBookEntry{
         private String lastName;
@@ -42,7 +42,7 @@ public class program_hashmap {
 public static void main(String[] args) {
     String filename = "M:\\Lessons-HW-Specialization\\Java-Basic_API\\java_project_Yastrebov_A\\attestation\\initial_phonebook.txt";
     try {
-        Map<String, List<String>> phoneBookMap = readPhoneBookFromFile(filename);
+        Map<String, List<Long>> phoneBookMap = readPhoneBookFromFile(filename);
         System.out.println("Phonebook before sorting: ");
         printPhoneBook(phoneBookMap);
         // Note: Phonebook is in English - so the order is sorted accordingly;
@@ -57,8 +57,8 @@ public static void main(String[] args) {
 }
 
 // hashmap method to read from phonebook file to fill in the hashMap
-public static Map<String, List<String>> readPhoneBookFromFile(String filename) throws IOException {
-    Map<String, List<String>> phoneBookMap = new HashMap<>();
+public static Map<String, List<Long>> readPhoneBookFromFile(String filename) throws IOException {
+    Map<String, List<Long>> phoneBookMap = new HashMap<>();
     try (BufferedReader reader = new BufferedReader(new FileReader(filename))){
         String line;
         while ((line = reader.readLine())!= null){
@@ -66,6 +66,8 @@ public static Map<String, List<String>> readPhoneBookFromFile(String filename) t
             if (parts.length == 4) {
                 String fullName = parts [0]+ " " + parts[1] + " " + parts[2]; 
                 String phoneNumber = parts[3];
+                Long Number = Long.parseLong(parts[3]);
+
                 phoneBookMap.computeIfAbsent(fullName, k -> new ArrayList<>()).add(phoneNumber);
             }
         }
@@ -73,31 +75,31 @@ public static Map<String, List<String>> readPhoneBookFromFile(String filename) t
     return phoneBookMap;
 }
 
-public static Map<String, List<String>> sortPhoneBookByNumber(Map<String, List<String>> phoneBookMap) {
+public static Map<String, List<Long>> sortPhoneBookByNumber(Map<String, List<Long>> phoneBookMap) {
     // Преобразуем Map в список Map.Entry
-    List<Map.Entry<String, List<String>>> entryList = new ArrayList<>(phoneBookMap.entrySet());
+    List<Map.Entry<String, List<Long>>> entryList = new ArrayList<>(phoneBookMap.entrySet());
     
     // Сортируем список с использованием Comparator, который сравнивает номера телефонов по длине
-    entryList.sort(new Comparator<Map.Entry<String, List<String>>>() {
+    entryList.sort(new Comparator<Map.Entry<String, List<Long>>>() {
         @Override
-        public int compare(Map.Entry<String, List<String>> entry1, Map.Entry<String, List<String>> entry2) {
+        public int compare(Map.Entry<String, List<Long>> entry1, Map.Entry<String, List<Long>> entry2) {
             return Integer.compare(entry1.getKey().length(), entry2.getKey().length());
         }
     });
     
     // Собираем отсортированные данные в LinkedHashMap для сохранения порядка
-    Map<String, List<String>> sortedPhoneBookMap = new LinkedHashMap<>();
-    for (Map.Entry<String, List<String>> entry : entryList) {
+    Map<String, List<Long>> sortedPhoneBookMap = new LinkedHashMap<>();
+    for (Map.Entry<String, List<Long>> entry : entryList) {
         sortedPhoneBookMap.put(entry.getKey(), entry.getValue());
     }
     
     return sortedPhoneBookMap;
 }
 
-public static void printPhoneBook(Map<String, List<String>> phoneBookMap) {
-    for (Map.Entry<String, List<String>> entry : phoneBookMap.entrySet()) {
+public static void printPhoneBook(Map<String, List<Long>> phoneBookMap) {
+    for (Map.Entry<String, List<Long>> entry : phoneBookMap.entrySet()) {
         String fullName = entry.getKey();
-        List<String> phoneNumbers = entry.getValue();
+        List<Long> phoneNumbers = entry.getValue();
         System.out.println(fullName + ": " + phoneNumbers);
        
     }
